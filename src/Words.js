@@ -306,9 +306,9 @@ const word_bank = [
 ]
 
 
-let random_word = word_bank[Math.round(Math.random() * (word_bank.length - 1))]
+let answer = word_bank[Math.round(Math.random() * (word_bank.length - 1))]
 
 // console.log(random_word)
 
 
-export default random_word
+export default word_bank
