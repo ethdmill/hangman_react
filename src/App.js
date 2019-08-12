@@ -1,7 +1,8 @@
 import React from 'react'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
-import Game from './Game.js'
-import Rules from './Rules.js'
+import Game from './components/Game.js'
+import Rules from './components/Rules.js'
+// import Form from './components/Form.js'
 
 
 class Home extends React.Component {
@@ -18,18 +19,15 @@ class Home extends React.Component {
 }
 
 
-
-
 function App() {
 
-  return (
+  return(
     <div>
-
       <Router>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-          <li class="nav-link"><Link to='/'>Home</Link></li>
-          <li class="nav-link"><Link to='/game'>Play</Link></li>
-          <li class="nav-link"><Link to='/rules'>Rules</Link></li>
+          <li className="nav-link"><Link to='/'>Home</Link></li>
+          <li className="nav-link"><Link to='/game'>Play</Link></li>
+          <li className="nav-link"><Link to='/rules'>Rules</Link></li>
         </nav>
         <Route path='/' exact component={Home} />
         <Route path='/game' exact component={Game} />
