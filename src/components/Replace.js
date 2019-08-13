@@ -13,7 +13,7 @@ export function replaceSingleDashes(guess) {
 }
 
 export function replaceAllDashes(guess) {
-  document.getElementById("tempAnswer").innerHTML = answer
+  document.getElementById("tempAnswer").innerHTML = answer.toUpperCase()
 }
 
 export { temp_answer }

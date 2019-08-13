@@ -308,7 +308,7 @@ const word_bank = [
 
 let answer = word_bank[Math.round(Math.random() * (word_bank.length - 1))]
 
-console.log(answer.length)
+// console.log(answer.length)
 
 let answer_dashes = ("-").repeat(answer.length)
 

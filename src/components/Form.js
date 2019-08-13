@@ -38,8 +38,3 @@ class Form extends Component {
 }
 
 export default Form
-
-// if (answer.includes(this.guess)) {
-//   return(<div>"Nice one!"</div>)
-// } else {
-//   return(<div>"Try again!"</div>)
