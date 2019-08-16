@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { answer } from './Words.js'
-import { guessCheck } from './GuessCheck.js'
 
 
 class Form extends Component {
@@ -15,12 +13,10 @@ class Form extends Component {
   }
 
   handleSubmit = event => {
-    document.getElementById("guessInput").value = ''
-    let guess = (this.state.guess).toLowerCase()
-    guessCheck(guess)
-    console.log(guess)
-    console.log(answer)
     event.preventDefault()
+    this.setState({ guess: '' })
+    let guess = (this.state.guess).toLowerCase()
+    this.props.guessCheck(guess)
     }
 
   render() {
@@ -28,9 +24,19 @@ class Form extends Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           {"Type your guess here: "}
-          <input type="text" id="guessInput" value={this.state.guess} onChange={this.handleChange} />
+          <input
+            type="text"
+            id="guessInput"
+            value={this.state.guess}
+            onChange={this.handleChange}
+          />
         </label>
-        <input type="submit" value="Submit" />
+        <button
+          type="submit"
+          value="Submit"
+          disabled={this.props.attempts === 0}>
+          Submit
+        </button>
       </form>
     )
   }

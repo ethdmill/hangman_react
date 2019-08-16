@@ -300,17 +300,10 @@ const word_bank = [
 "esoteric",
 "adversity",
 "subterranean",
-"adversity",
-"adversity",
 
 ]
 
 
-let answer = word_bank[Math.round(Math.random() * (word_bank.length - 1))]
-
-// console.log(answer.length)
-
-let answer_dashes = ("-").repeat(answer.length)
-
-
-export { answer, answer_dashes }
+export function randomWord() {
+  return word_bank[Math.round(Math.random() * (word_bank.length - 1))].toUpperCase()
+}

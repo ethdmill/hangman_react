@@ -2,7 +2,6 @@ import React from 'react'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import Game from './components/Game.js'
 import Rules from './components/Rules.js'
-// import Form from './components/Form.js'
 
 
 class Home extends React.Component {
