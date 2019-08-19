@@ -9,6 +9,7 @@ class Game extends Component {
   constructor() {
     super()
     let answer = randomWord()
+    console.log(answer)
     this.state = {
       answer: answer,
       attempts: this.getAttempts(answer),
@@ -35,6 +36,8 @@ class Game extends Component {
       return 'You only have ' + this.state.attempts + ' attempts left, be careful!!'
     } else if (this.state.attempts === 0) {
       return 'Game over, man! Game over!'
+    } else if (!this.state.tempAnswer.includes("-")) {
+      return 'Congratulations, you won!'
     } else {
       return 'You have ' + this.state.attempts + ' attempts left.'
     }
@@ -65,12 +68,10 @@ class Game extends Component {
       this.replaceSingleDashes(guess)
       if (this.state.tempAnswer.includes("-")) {
         this.setState({ flavorText: 'Nice one!' })
-      } else {
-        this.setState({ flavorText: 'Congratulations, you won!' })
       }
     } else if (this.state.answer === guess) {
       this.replaceAllDashes(guess)
-      this.setState({ flavorText: 'Congratulations, you won!' })
+      this.setState({ flavorText: 'Wow, great job!' })
     } else {
       this.setState({ flavorText: 'Try again!', attempts: (this.state.attempts - 1) })
     }
@@ -105,18 +106,19 @@ class Game extends Component {
       tempAnswer: ("-").repeat(newAnswer.length).split(""),
       previousAnswer: this.state.answer,
     })
+    console.log(newAnswer)
   }
 
   render() {
     return(
-      <div>
-        <div>{this.attemptsRemaining()}</div>
-        <div>{(this.state.attempts === 0) ? this.state.answer : this.state.tempAnswer}</div>
-        <div><Form guessCheck={this.guessCheck} attempts={this.state.attempts} /></div>
-        <div>{this.state.flavorText}</div>
-        <div>{this.state.alreadyGuessedLetters.join(", ")}</div>
-        <div>{this.state.alreadyGuessedWords.join(", ")}</div>
-        <div><Replay renderButton={(!this.state.tempAnswer.includes("-")) || (this.state.attempts === 0)} replayGame={this.replayGame} /></div>
+      <div className="text-center">
+        <h4 className="mt-5 pt-5">{this.attemptsRemaining()}</h4>
+        <h1 className="py-4 my-3">{(this.state.attempts === 0) ? this.state.answer : this.state.tempAnswer}</h1>
+        <div><Form guessCheck={this.guessCheck} attempts={this.state.attempts} tempAnswer={this.state.tempAnswer} /></div>
+        <h5 className="py-3">{this.state.flavorText}</h5>
+        <div className="mb-1">{"Guessed letters: " + this.state.alreadyGuessedLetters.join(", ")}</div>
+        <div className="mt-1">{"Guessed words: " + this.state.alreadyGuessedWords.join(", ")}</div>
+        <div className="py-4"><Replay renderButton={(!this.state.tempAnswer.includes("-")) || (this.state.attempts === 0)} replayGame={this.replayGame} /></div>
       </div>
     )
   }

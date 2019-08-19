@@ -8,8 +8,8 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Welcome to the Word Guessing Game.</h1>
+      <div className="text-center">
+        <h1 className="py-4">Welcome to the Word Guessing Game!</h1>
         <h4>Please select an option above.</h4>
       </div>
     )
@@ -21,18 +21,16 @@ class Home extends React.Component {
 function App() {
 
   return(
-    <div>
       <Router>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-          <li className="nav-link"><Link to='/'>Home</Link></li>
-          <li className="nav-link"><Link to='/game'>Play</Link></li>
-          <li className="nav-link"><Link to='/rules'>Rules</Link></li>
-        </nav>
+          <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4 justify-content-center">
+            <li className="nav-link"><Link to='/'>Home</Link></li>
+            <li className="nav-link"><Link to='/game'>Play</Link></li>
+            <li className="nav-link"><Link to='/rules'>Rules</Link></li>
+          </nav>
         <Route path='/' exact component={Home} />
         <Route path='/game' exact component={Game} />
         <Route path='/rules' exact component={Rules} />
       </Router>
-    </div>
   );
 }
 
