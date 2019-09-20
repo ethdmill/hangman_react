@@ -8,10 +8,12 @@ class Form extends Component {
     this.state = { guess: '' }
   }
 
+  // Sets state of answer to any text input in form field
   handleChange = event => {
     this.setState({ guess: event.target.value })
   }
 
+  // Stores user guess and runs main game functions upon submitting text
   handleSubmit = event => {
     event.preventDefault()
     this.setState({ guess: '' })

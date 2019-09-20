@@ -9,7 +9,6 @@ class Game extends Component {
   constructor() {
     super()
     let answer = randomWord()
-    console.log(answer)
     this.state = {
       answer: answer,
       attempts: this.getAttempts(answer),
@@ -21,6 +20,7 @@ class Game extends Component {
     }
   }
 
+  // Determines amount of attempts user gets based on length of randomly chosen answer
   getAttempts = (answer) => {
     let attempts
     if (answer.length <= 10) {
@@ -31,6 +31,7 @@ class Game extends Component {
     return attempts
   }
 
+  // Chooses flavor text to display on screen based on number of attempts user has left
   attemptsRemaining = () => {
     if (this.state.attempts <= 3 && this.state.attempts > 0) {
       return 'You only have ' + this.state.attempts + ' attempts left, be careful!!'
@@ -43,6 +44,7 @@ class Game extends Component {
     }
   }
 
+  // Checks user guess against randomly chosen answer and either accepts or rejects it
   guessCheck = (guess) => {
     if (guess.length === 1) {
       if (this.state.alreadyGuessedLetters.includes(guess.toUpperCase())) {
@@ -63,6 +65,7 @@ class Game extends Component {
     }
   }
 
+  // Replaces dashes in displayed temporary answer with user guess if guess exists anywhere in answer
   guessReplace = (guess) => {
     if (this.state.answer.includes(guess) && this.state.answer !== guess) {
       this.replaceSingleDashes(guess)
@@ -77,6 +80,7 @@ class Game extends Component {
     }
   }
 
+  // Handles the replacement of dashes with individual-letter guesses
   replaceSingleDashes = (guess) => {
     let temp_answer = this.state.tempAnswer.slice(0)
     for(var i = 0; i < this.state.answer.length; i++) {
@@ -84,19 +88,23 @@ class Game extends Component {
         temp_answer[i] = guess
       }
     }
-    console.log(temp_answer)
     this.setState({ tempAnswer: temp_answer })
   }
 
+  // Handles the replacement of dashes if user guesses entire answer
   replaceAllDashes = (guess) => {
     this.setState({ tempAnswer: this.state.answer.toUpperCase() })
   }
 
+  // Allows user to replay game by resetting state to mostly default
   replayGame = () => {
     let newAnswer = randomWord()
+
+    // If answer is ever randomly selected as "recursion", answer is locked as "recursion" forever
     if (this.state.answer === 'recursion') {
       newAnswer = 'recursion'
     }
+
     this.setState({
       answer: newAnswer,
       attempts: this.getAttempts(newAnswer),
@@ -106,7 +114,6 @@ class Game extends Component {
       tempAnswer: ("-").repeat(newAnswer.length).split(""),
       previousAnswer: this.state.answer,
     })
-    console.log(newAnswer)
   }
 
   render() {
