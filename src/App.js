@@ -9,7 +9,7 @@ class Home extends React.Component {
   render() {
     return (
       <div className="text-center">
-        <h1 className="py-4">Welcome to the Word Guessing Game!</h1>
+        <h1 className="py-4">Welcome to Hangman!</h1>
         <h4>Please select an option above.</h4>
       </div>
     )
